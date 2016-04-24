@@ -20,7 +20,9 @@ router.get('/', function(req, res) {
 });
 router.get('/:id', function(req, res) {
     // Find all entries with the specified id
-    Users.find({'id':req.params.id}, function(error, user) {
+    Users.find({
+        'id': req.params.id
+    }, function(error, user) {
         //  Inform user if anything goes wrong
         if (error) {
             res.status(500);
@@ -55,9 +57,6 @@ router.post('/', function(req, res) {
         res.json(user);
     });
 });
-
-
-
 router.put('/:id', function(req, res) {
     // Return all entry in Users "table" with provided id
     Users.find({
@@ -102,9 +101,19 @@ router.put('/:id', function(req, res) {
 
         // Return successfully updated object
         res.json(users);
-
-
-
+    });
+});
+router.delete('/:id', function(req, res) {
+    // Delete entry with provided id
+    Users.remove({
+        'id': req.params.id
+    }, function(delete_error, user) {
+        if (delete_error) {
+            console.log(find_error);
+            res.status(500);
+            res.send('Error deleting from database');
+        }
+        res.send('User deleted successfully');
     });
 });
 
