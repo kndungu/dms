@@ -18,47 +18,43 @@ router.get('/', function(req, res) {
         res.json(users);
     });
 });
-// router.get('/', function(req, res) {
-//     // Return all entries in Users "table"
-//     Test.find(function(err, users) {
-//         // In case of error inform user
-//         if (err) {
-//             res.status(500);
-//             res.send('There was an error reading fron the db');
-//         }
-//
-//         // Return the rows found
-//         res.json(users);
-//     });
-// });
-// router.post('/', function(req, res) {
-//     // Declare new instance of the Test "table"
-//     test = new Test();
-//
-//     // Define values of the new "row" to add
-//     test.username = req.body.username;
-//     test.name.first = req.body.firstName;
-//     test.name.last = req.body.lastName;
-//     test.email = req.body.email;
-//     test.password = req.body.password;
-//
-//     // Save the new "row"
-//     test.save(function(err) {
-//         console.log('abc');
-//         // If error occured inform user
-//         if (err) {
-//             console.log(err);
-//             res.status(500);
-//             res.send('There was an error');
-//         }
-//         console.log('affjsofi');
-//
-//         // Return successfully created object
-//         res.json(test);
-//     });
-//     console.log('Outside save');
-//
-// });
+router.get('/:id', function(req, res) {
+    // Find all entries with the specified id
+    Users.find({'id':req.params.id}, function(error, user) {
+        //  Inform user if anything goes wrong
+        if (error) {
+            res.status(500);
+            res.send('There was an error reading from the database');
+        }
+
+        // Else all's good, send results
+        res.json(user);
+    });
+});
+router.post('/', function(req, res) {
+    // Declare new instance of the Users "table"
+    user = new Users();
+
+    // Define values of the new "row" to add
+    user.username = req.body.username;
+    user.name.first = req.body.firstName;
+    user.name.last = req.body.lastName;
+    user.email = req.body.email;
+    user.password = req.body.password;
+    user.role = req.body.role;
+
+    // Save the new "row"
+    user.save(function(error) {
+        // If error occured inform user
+        if (error) {
+            console.log(err);
+            res.status(500);
+            res.send('There was an error saving to the database');
+        }
+        // Return successfully created object
+        res.json(user);
+    });
+});
 
 
 
