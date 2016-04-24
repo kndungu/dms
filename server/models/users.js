@@ -1,6 +1,3 @@
-// Will do the heavy lifting
-var mongoose = require('mongoose');
-
 // Set up the database
 var mongoose = require('mongoose');
 var dataseUri = process.env.DATABASE_URI;
@@ -35,7 +32,8 @@ var UserSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    updated: Date
+    updated: Date,
+    role: String
 });
 
 // Create the autoincrementing id field starting at 1
