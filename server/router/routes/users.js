@@ -58,47 +58,50 @@ router.post('/', function(req, res) {
 
 
 
-router.put('/:test_id', function(req, res) {
-    // Return all entry in Test "table" with provided id
-    Test.find({
-        id: req.params.test_id
-    }, function(err, tests) {
+router.put('/:id', function(req, res) {
+    // Return all entry in Users "table" with provided id
+    Users.find({
+        id: req.params.id
+    }, function(find_error, users) {
         // In case of error inform user
-        if (err) {
+        if (find_error) {
+            console.log(find_error);
             res.status(500);
-            res.send('Error connecting to database');
+            res.send('Error reading from database');
         }
 
         // Update each entry found
-        tests.forEach(function(test) {
+        users.forEach(function(user) {
 
             // For every object property in the body
             // Update it's corresponding db property
             Object.keys(req.body).forEach(function(property) {
                 // Special cases for first and last names
                 if (property === 'firstName') {
-                    test.name.first = req.body.firstName;
+                    user.name.first = req.body.firstName;
                 } else if (property === 'lastName') {
-                    test.name.last = req.body.lastName;
+                    user.name.last = req.body.lastName;
                 } else {
-                    test[property] = req.body[property];
+                    user[property] = req.body[property];
                 }
-                test.updated = new Date();
+
+                // "Row" can now have an updated value
+                user.updated = new Date();
             });
 
             // Save the updated "row"
-            test.save(function(err) {
+            user.save(function(save_error) {
                 // If error occured inform user
-                if (err) {
-                    console.log(err);
+                if (save_error) {
+                    console.log(save_error);
                     res.status(500);
-                    res.send('There was an error');
+                    res.send('Error saving to database');
                 }
             });
         });
 
         // Return successfully updated object
-        res.json(tests);
+        res.json(users);
 
 
 
