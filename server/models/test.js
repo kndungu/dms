@@ -1,9 +1,5 @@
 var initialisedDb = require('./dbSetup');
 
-// To be able to autoincrement the id field
-var autoIncrement = require('mongoose-auto-increment');
-autoIncrement.initialize(initialisedDb.dbConnection);
-
 // Define a "Table"
 var TestSchema = new initialisedDb.Schema({
     username: String,
@@ -20,7 +16,7 @@ var TestSchema = new initialisedDb.Schema({
     updated: Date
 });
 
-TestSchema.plugin(autoIncrement.plugin, {
+TestSchema.plugin(initialisedDb.autoIncrement.plugin, {
     model: 'Test',
     startAt: 1,
     field: 'id'
