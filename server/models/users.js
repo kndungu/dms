@@ -1,26 +1,11 @@
-// Set up the database
-var mongoose = require('mongoose');
-var dataseUri = process.env.DATABASE_URI;
-var db = mongoose.connect(dataseUri);
-
-// Provide feedback and get connection object
-var db = mongoose.connection;
-db.on('error', function(err) {
-    console.log(err);
-});
-db.once('open', function() {
-    console.log('Successfully connected to db');
-});
+var initialisedDb = require('./dbSetup');
 
 // To be able to autoincrement the id field
 var autoIncrement = require('mongoose-auto-increment');
-autoIncrement.initialize(db);
-
-// To create the "table"
-var Schema = mongoose.Schema;
+autoIncrement.initialize(initialisedDb.dbConnection);
 
 // Define a "Table"
-var UserSchema = new Schema({
+var UserSchema = new initialisedDb.Schema({
     username: String,
     name: {
         first: String,
@@ -43,4 +28,4 @@ UserSchema.plugin(autoIncrement.plugin, {
     field: 'id'
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = initialisedDb.mongoose.model('User', UserSchema);
