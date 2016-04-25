@@ -5,7 +5,7 @@ var autoIncrement = require('mongoose-auto-increment');
 autoIncrement.initialize(initialisedDb.dbConnection);
 
 // Define a "Table"
-var TestSchema = new initialisedDb.Schema({
+var UserSchema = new initialisedDb.Schema({
     username: String,
     name: {
         first: String,
@@ -17,13 +17,15 @@ var TestSchema = new initialisedDb.Schema({
         type: Date,
         default: Date.now
     },
-    updated: Date
+    updated: Date,
+    role: String
 });
 
-TestSchema.plugin(autoIncrement.plugin, {
-    model: 'Test',
+// Create the autoincrementing id field starting at 1
+UserSchema.plugin(autoIncrement.plugin, {
+    model: 'User',
     startAt: 1,
     field: 'id'
 });
 
-module.exports = initialisedDb.mongoose.model('Test', TestSchema);
+module.exports = initialisedDb.mongoose.model('User', UserSchema);

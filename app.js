@@ -16,10 +16,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-// Set up database
-var mongoose = require('mongoose');
-mongoose.connect(dataseUri);
-
 // Set up views
 var path = require('path');
 app.set('views', path.join(__dirname, 'views'));
