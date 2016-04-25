@@ -7,5 +7,5 @@ module.exports = function(app) {
     // Use routes above based on route visited by user
     app.use('/', homeRoute);
     app.use('/users', usersRoute);
-    app.use('/api/test', testRoute);
+    app.use('/test', testRoute);
 };

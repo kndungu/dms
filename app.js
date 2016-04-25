@@ -16,24 +16,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-/*
- *Set up database
- */
-// var mongoose = require('mongoose');
-// var db = mongoose.createConnection(dataseUri);
-//
-// // Provide feedback
-// db.on('error', function(err) {
-//     console.log(err);
-// });
-// db.once('open', function() {
-//   console.log('Successfully connected to db');
-// });
-//
-// // To be able to autoincrement fields
-// var autoIncrement = require('mongoose-auto-increment');
-// autoIncrement.initialize(db);
-
 // Set up views
 var path = require('path');
 app.set('views', path.join(__dirname, 'views'));
