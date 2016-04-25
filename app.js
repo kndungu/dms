@@ -3,7 +3,6 @@ require('dotenv').config();
 
 // Get environment variables
 var port = process.env.PORT;
-var dataseUri = process.env.DATABASE_URI;
 
 // Set up express
 var express = require('express');
