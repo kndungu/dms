@@ -1,7 +1,7 @@
-var initialisedDb = require('./dbSetup');
+var config = require('../config/config');
 
 // Define a "Table"
-var TestSchema = new initialisedDb.Schema({
+var TestSchema = new config.Schema({
     username: String,
     name: {
         first: String,
@@ -16,10 +16,10 @@ var TestSchema = new initialisedDb.Schema({
     updated: Date
 });
 
-TestSchema.plugin(initialisedDb.autoIncrement.plugin, {
+TestSchema.plugin(config.autoIncrement.plugin, {
     model: 'Test',
     startAt: 1,
     field: 'id'
 });
 
-module.exports = initialisedDb.mongoose.model('Test', TestSchema);
+module.exports = config.mongoose.model('Test', TestSchema);

@@ -3,7 +3,7 @@ var Documents = require('../models/documents');
 module.exports = {
     getAll: function(req, res) {
         // Get all entries in the documents "table"
-        Documents.find(function(error, documents) {
+        Documents.find({}, function(error, documents) {
             //  Inform user if anything goes wrong
             if (error) {
                 res.status(500);

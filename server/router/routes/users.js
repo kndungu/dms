@@ -21,4 +21,7 @@ router.delete('/:id', UsersController.deleteUser);
 // e.g. GET localhost:8080/users/13/documents
 router.get('/:id/documents', DocumentsController.getByOwnerId);
 
+// e.g. GET localhost:8080/users/login
+router.post('/login', UsersController.login);
+
 module.exports = router;
