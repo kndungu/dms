@@ -20,6 +20,10 @@ var path = require('path');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+// Log requests to the console
+var logger = require('morgan');
+app.use(logger('dev'));
+
 // Handle all routes
 var router = require('./server/router')(app);
 

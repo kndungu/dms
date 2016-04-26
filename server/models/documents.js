@@ -1,7 +1,7 @@
-var initialisedDb = require('./dbSetup');
+var config = require('../config/config');
 
 // Define the documents "table"
-var DocumentsSchema = new initialisedDb.Schema({
+var DocumentsSchema = new config.Schema({
     ownerId: Number,
     title: String,
     content: String,
@@ -13,10 +13,10 @@ var DocumentsSchema = new initialisedDb.Schema({
 });
 
 // Create the autoincrementing id field starting at 1
-DocumentsSchema.plugin(initialisedDb.autoIncrement.plugin, {
+DocumentsSchema.plugin(config.autoIncrement.plugin, {
     model: 'Documents',
     startAt: 1,
     field: 'id'
 });
 
-module.exports = initialisedDb.mongoose.model('Documents', DocumentsSchema);
+module.exports = config.mongoose.model('Documents', DocumentsSchema);

@@ -1,7 +1,7 @@
-var initialisedDb = require('./dbSetup');
+var config = require('../config/config');
 
 // Define the documents "table"
-var RolesSchema = new initialisedDb.Schema({
+var RolesSchema = new config.Schema({
     title: String,
     createdAt: {
         type: Date,
@@ -11,10 +11,10 @@ var RolesSchema = new initialisedDb.Schema({
 });
 
 // Create the autoincrementing id field starting at 1
-RolesSchema.plugin(initialisedDb.autoIncrement.plugin, {
+RolesSchema.plugin(config.autoIncrement.plugin, {
     model: 'Roles',
     startAt: 1,
     field: 'id'
 });
 
-module.exports = initialisedDb.mongoose.model('Roles', DocumentsSchema);
+module.exports = config.mongoose.model('Roles', DocumentsSchema);
