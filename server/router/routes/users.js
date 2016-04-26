@@ -1,5 +1,4 @@
-var express = require('express');
-var router = express.Router();
+var router = require('express').Router();
 var UsersController = require('../../controllers/users');
 var DocumentsController = require('../../controllers/documents');
 
@@ -20,8 +19,5 @@ router.delete('/:id', UsersController.deleteUser);
 
 // e.g. GET localhost:8080/users/13/documents
 router.get('/:id/documents', DocumentsController.getByOwnerId);
-
-// e.g. GET localhost:8080/users/login
-router.post('/login', UsersController.login);
 
 module.exports = router;
