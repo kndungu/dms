@@ -8,9 +8,6 @@ router.get('/', UsersController.getAll);
 // e.g. GET localhost:8080/users/13
 router.get('/:id', UsersController.getById);
 
-// e.g. POST localhost:8080/users
-router.post('/', UsersController.addUser);
-
 // e.g. PUT localhost:8080/users/13
 router.put('/:id', UsersController.updateUser);
 
