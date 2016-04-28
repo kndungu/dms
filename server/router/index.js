@@ -3,7 +3,6 @@ var publicRoute = require('./routes/public');
 var usersRoute = require('./routes/users');
 var documentsRoute = require('./routes/documents');
 var testRoute = require('./routes/test');
-var testRoute2 = require('./routes/test2');
 
 // To process token
 var jwt = require('jsonwebtoken');
