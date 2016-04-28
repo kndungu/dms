@@ -51,7 +51,6 @@ module.exports = function(app) {
     // Use routes above based on route visited by user
     app.use('/', publicRoute);
     app.use('/test', testRoute);
-    app.use('/test2', testRoute2);
 
     // Protect sensitive routes
     app.use(authenticateUser);

@@ -40,12 +40,15 @@ module.exports = function(res, error) {
 
     // Get validation error message
     message = error.errors[firstFailed].message;
+  }  else{
+    // Handle unexpected errors
+    message = error;
   }
 
   // Done, send to user
   res.status(400);
   res.json({
     success: false,
-    message: error
+    message: message
   });
 };
