@@ -1,5 +1,7 @@
 var Users = require('../models/users');
 var jwt = require('jsonwebtoken');
+var parseError = require('./parseError');
+
 
 module.exports = {
 
@@ -10,10 +12,10 @@ module.exports = {
       if (error) {
         res.status(500);
         res.send('There was an error reading from the database');
+      } else {
+        // Else all's good, send results
+        res.json(users);
       }
-
-      // Else all's good, send results
-      res.json(users);
     });
   },
   getById: function(req, res) {
@@ -25,10 +27,10 @@ module.exports = {
       if (error) {
         res.status(500);
         res.send('There was an error reading from the database');
+      } else {
+        // Else all's good, send results
+        res.json(user);
       }
-
-      // Else all's good, send results
-      res.json(user);
     });
   },
   addUser: function(req, res) {
@@ -43,17 +45,30 @@ module.exports = {
     user.password = req.body.password;
     user.role = req.body.role;
 
-    // Save the new "row"
-    user.save(function(error) {
-      // console.log(user.password);
-      // If error occured inform user
-      if (error) {
-        console.log(err);
-        res.status(500);
-        res.send('There was an error saving to the database');
+    // Ensure the username has not been used before
+    Users.find({
+      'username': req.body.username
+    }, function(error, matches) {
+      // Inform user if username has been used
+      if (matches[0]) {
+        res.status(409);
+        res.json({
+          success: false,
+          message: '\'' + req.body.username + '\'' +
+            ' already used, please provide another username'
+        });
+      } else {
+        // All's good, save the new user
+        user.save(function(error) {
+          if (error) {
+            res.status(500);
+            parseError(res, error);
+          } else {
+            // Return successfully created object
+            res.json(user);
+          }
+        });
       }
-      // Return successfully created object
-      res.json(user);
     });
   },
   updateUser: function(req, res) {
