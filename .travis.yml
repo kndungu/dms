@@ -6,6 +6,6 @@ before_install:
   - npm install -g grunt-cli
   - npm install -g istanbul
 install: npm install
-after_script:
-  - istanbul cover ./node_modules/mocha/bin/_mocha ./test/*.js
-  - ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+# after_script:
+#   - istanbul cover ./node_modules/mocha/bin/_mocha ./test/*.js
+#   - ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
