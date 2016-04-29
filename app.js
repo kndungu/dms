@@ -1,5 +1,7 @@
-// Set environment variables
-require('dotenv').config();
+if (!process.env.DATABASE_URI) {
+  // Set environment variables
+  require('dotenv').config();
+}
 
 // Get environment variables
 var port = process.env.PORT;
@@ -31,6 +33,9 @@ var router = require('./server/router')(app);
 app.listen(port, function() {
     console.log('Listening on port ' + port);
 });
+
+// To be able to use with supertest
+module.exports = app;
 
 //
 //
