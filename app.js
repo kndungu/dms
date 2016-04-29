@@ -1,5 +1,7 @@
-// Set environment variables
-require('dotenv').config();
+if (!process.env.DATABASE_URI) {
+  // Set environment variables
+  require('dotenv').config();
+}
 
 // Get environment variables
 var port = process.env.PORT;
