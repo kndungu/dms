@@ -2,7 +2,6 @@ var Users = require('../models/users');
 var jwt = require('jsonwebtoken');
 var parseError = require('./parseError');
 
-
 module.exports = {
 
     getAll: function(req, res) {
