@@ -37,7 +37,10 @@ router.post('/', function(req, res) {
           parseError(res, error);
         } else {
           // Return successfully created object
-          res.json(test);
+          res.json({
+            success: true,
+            message: 'User created successfully'
+          });
         }
       });
     }
