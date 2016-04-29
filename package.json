@@ -17,9 +17,10 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
     "grunt": "^1.0.1",
+    "grunt-mocha-cli": "^2.1.0",
     "grunt-nodemon": "^0.4.2",
+    "should": "^8.3.1",
     "supertest": "^1.2.0"
   }
 }
