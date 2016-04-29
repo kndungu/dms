@@ -32,6 +32,9 @@ app.listen(port, function() {
     console.log('Listening on port ' + port);
 });
 
+// To be able to use with supertest
+module.exports = app;
+
 //
 //
 //
