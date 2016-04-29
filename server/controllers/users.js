@@ -1,60 +1,91 @@
 var Users = require('../models/users');
 var jwt = require('jsonwebtoken');
+var parseError = require('./parseError');
 
 module.exports = {
 
-  getAll: function(req, res) {
-    // Get all entries in the users "table"
-    Users.find({}, function(error, users) {
-      //  Inform user if anything goes wrong
-      if (error) {
-        res.status(500);
-        res.send('There was an error reading from the database');
-      }
+    getAll: function(req, res) {
+      // Get all entries in the users "table"
+      Users.find({}, function(error, users) {
+        //  Inform user if anything goes wrong
+        if (error) {
+          res.status(500);
+          res.send('There was an error reading from the database');
+        } else {
+          // Else all's good, send results
+          res.json(users);
+        }
+      });
+    },
+    getById: function(req, res) {
+      // Find all entries with the specified id
+      Users.find({
+        'id': req.params.id
+      }, function(error, user) {
+        //  Inform user if anything goes wrong
+        if (error) {
+          res.status(500);
+          res.send('There was an error reading from the database');
+        } else {
+          // Else all's good, send results
+          res.json(user);
+        }
+      });
+    },
+    addUser: function(req, res) {
+      // Declare new instance of the Users "table"
+      user = new Users();
 
-      // Else all's good, send results
-      res.json(users);
-    });
-  },
-  getById: function(req, res) {
-    // Find all entries with the specified id
-    Users.find({
-      'id': req.params.id
-    }, function(error, user) {
-      //  Inform user if anything goes wrong
-      if (error) {
-        res.status(500);
-        res.send('There was an error reading from the database');
-      }
+      // Define values of the new "row" to add
+      user.username = req.body.username;
+      user.name.first = req.body.firstName;
+      user.name.last = req.body.lastName;
+      user.email = req.body.email;
+      user.password = req.body.password;
+      user.role = req.body.role;
 
-      // Else all's good, send results
-      res.json(user);
-    });
-  },
-  addUser: function(req, res) {
-    // Declare new instance of the Users "table"
-    user = new Users();
+      // Ensure the username has not been used before
+      Users.find({
+          'username': req.body.username
+        }, function(error, matches) {
+          // console.log(matches);
+          // Inform user if username has been used
+          if (matches[0]) {
+            res.status(500);
+            res.json({
+              success: false,
+              message: '\'' + req.body.username + '\'' +
+                ' already used, please provide another username'
+            });
+          } else {
+            // Ensure the enail has not been used before
+            Users.find({
+              'email': req.body.email
+            }, function(error, matches) {
+              // Inform user if email has been used
+              if (matches[0]) {
+                res.status(500);
+                res.json({
+                  success: false,
+                  message: '\'' + req.body.email + '\'' +
+                    ' already used, please provide another email'
+                });
+              } else {
+                // All's good, save the new user
+                user.save(function(error) {
+                  if (error) {
+                    res.status(500);
+                    parseError(res, error);
+                  } else {
+                    // Return successfully created object
+                    res.json(user);
+                  }
+                });
+              }
+            });
+          }
+        });
 
-    // Define values of the new "row" to add
-    user.username = req.body.username;
-    user.name.first = req.body.firstName;
-    user.name.last = req.body.lastName;
-    user.email = req.body.email;
-    user.password = req.body.password;
-    user.role = req.body.role;
-
-    // Save the new "row"
-    user.save(function(error) {
-      // console.log(user.password);
-      // If error occured inform user
-      if (error) {
-        console.log(err);
-        res.status(500);
-        res.send('There was an error saving to the database');
-      }
-      // Return successfully created object
-      res.json(user);
-    });
   },
   updateUser: function(req, res) {
     // Return all entry in Users "table" with provided id

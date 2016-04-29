@@ -2,7 +2,7 @@
 var mongoose = require('mongoose');
 
 // Custom message for enum validation errors
-mongoose.Error.messages.String.enum  = '\'{VALUE}\' is in an invalid {PATH}.';
+mongoose.Error.messages.String.enum  = '\'{VALUE}\' is an invalid {PATH}.';
 
 // Connect to the db
 var dataseUri = process.env.DATABASE_URI;
