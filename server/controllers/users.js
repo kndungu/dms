@@ -1,7 +1,6 @@
 var Users = require('../models/users');
 var jwt = require('jsonwebtoken');
 var parseError = require('./parseError');
-// var checkDuplicate = require('./checkDuplicate');
 
 
 module.exports = {
@@ -45,7 +44,6 @@ module.exports = {
       user.email = req.body.email;
       user.password = req.body.password;
       user.role = req.body.role;
-      // console.log(checkDuplicate(req, res));
 
       // Ensure the username has not been used before
       Users.find({
