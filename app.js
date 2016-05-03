@@ -13,7 +13,7 @@ var app = express();
 // Set up bodyParser
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
-    extended: true
+  extended: true
 }));
 app.use(bodyParser.json());
 
@@ -22,7 +22,7 @@ var path = require('path');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// Log requests to the console
+// Log requests to the console when not running tests (on port 3000)
 var logger = require('morgan');
 app.use(logger('dev'));
 
@@ -31,7 +31,7 @@ var router = require('./server/router')(app);
 
 // Start receiving request
 app.listen(port, function() {
-    console.log('Listening on port ' + port);
+  console.log('Listening on port ' + port);
 });
 
 // To be able to use with supertest
