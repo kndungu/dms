@@ -5,11 +5,11 @@ var Test = require('../server/models/test');
 
 describe('Users Tests', function() {
   // Remove all entries currently in the collection
-  before(function(done) {
-    Test.remove({},function(error, removed) {
-      done();
-    });
-  });
+  // before(function(done) {
+  //   Test.remove({},function(error, removed) {
+  //     done();
+  //   });
+  // });
   describe('GET /test', function() {
     it('responds with json', function(done) {
       request(app)
