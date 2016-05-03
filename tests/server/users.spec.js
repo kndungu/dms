@@ -1,8 +1,22 @@
 var app = require('../../app'),
   request = require('supertest'),
-  should = require('should');
+  should = require('should'),
+  seeder = require('mongoose-seeder'),
+  seedData = require('./seedData.json');
+
+
 
 describe('Users Tests', function() {
+  before(function(done) {
+    seeder.seed(seedData, function(error, dbData) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Successfully added seed data");
+      }
+      done();
+    });
+  });
   describe('Creates unique user', function() {
     it('does not create user with duplicate username', function(done) {
       request(app)
@@ -18,7 +32,6 @@ describe('Users Tests', function() {
         .set('Accept', 'application/json')
         .end(function(error, res) {
           should.not.exist(error);
-          console.log(res.body);
           should.equal(res.status, 409);
           res.body.success.should.be.false();
           res.body.message.should.containEql('provide another username');

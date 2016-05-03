@@ -15,8 +15,6 @@ module.exports = function(grunt) {
           PORT: 3000,
           SECRET_KEY: 'testSecretKey'
         },
-        // Drop db and insert seed data before running the tests
-        require: ['./app', './tests/server/seedData/seed']
       },
       all: ['tests/server/*.spec.js']
     }
