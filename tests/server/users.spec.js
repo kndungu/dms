@@ -18,6 +18,7 @@ describe('Users Tests', function() {
         .set('Accept', 'application/json')
         .end(function(error, res) {
           should.not.exist(error);
+          console.log(res.body);
           should.equal(res.status, 409);
           res.body.success.should.be.false();
           res.body.message.should.containEql('provide another username');
