@@ -51,7 +51,7 @@ module.exports = {
           // console.log(matches);
           // Inform user if username has been used
           if (matches[0]) {
-            res.status(500);
+            res.status(409);
             res.json({
               success: false,
               message: '\'' + req.body.username + '\'' +
@@ -64,7 +64,7 @@ module.exports = {
             }, function(error, matches) {
               // Inform user if email has been used
               if (matches[0]) {
-                res.status(500);
+                res.status(409);
                 res.json({
                   success: false,
                   message: '\'' + req.body.email + '\'' +
