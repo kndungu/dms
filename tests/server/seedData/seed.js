@@ -7,9 +7,6 @@
   seeder.seed(seedData, function(error, dbData) {
     if (error) {
       console.log(error);
-    } else {
-      console.log(dbData);
-      done();
     }
   });
 })();
