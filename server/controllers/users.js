@@ -48,7 +48,6 @@ module.exports = {
       Users.find({
           'username': req.body.username
         }, function(error, matches) {
-          // console.log(matches);
           // Inform user if username has been used
           if (matches[0]) {
             res.status(409);
@@ -74,7 +73,6 @@ module.exports = {
                 // All's good, save the new user
                 user.save(function(error) {
                   if (error) {
-                    res.status(500);
                     parseError(res, error);
                   } else {
                     // Return successfully created object
