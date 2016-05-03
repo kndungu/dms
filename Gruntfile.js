@@ -17,6 +17,21 @@ module.exports = function(grunt) {
         },
       },
       all: ['test/*.js']
+    },
+    mochacov: {
+      coverage: {
+        options: {
+          coveralls: true
+        }
+      },
+      test: {
+        options: {
+          reporter: 'spec'
+        }
+      },
+      options: {
+        files: 'test/*.js'
+      }
     }
 
   });
@@ -28,5 +43,7 @@ module.exports = function(grunt) {
   // Register the tasks
   grunt.registerTask('default', ['nodemon']);
   grunt.registerTask('test', ['mochacli']);
+  grunt.registerTask('travis', ['mochacov:coverage']);
+  grunt.registerTask('tests', ['mochacov:test']);
 
 };
