@@ -11,10 +11,11 @@ describe('Users Tests', function() {
     seeder.seed(seedData, function(error, dbData) {
       if (error) {
         console.log(error);
+        done();
       } else {
         console.log("Successfully added seed data");
+        done();
       }
-      done();
     });
   });
   describe('Creates unique user', function() {
