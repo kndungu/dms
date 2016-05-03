@@ -8,16 +8,16 @@ module.exports = function(grunt) {
         script: 'app.js'
       }
     },
-    mochacli: {
-      options: {
-        env: {
-          DATABASE_URI: 'mongodb://localhost:27017/testdb',
-          PORT: 3000,
-          SECRET_KEY: 'testSecretKey'
-        },
-      },
-      all: ['test/*.js']
-    },
+    // mochacli: {
+    //   options: {
+    //     env: {
+    //       DATABASE_URI: 'mongodb://localhost:27017/testdb',
+    //       PORT: 3000,
+    //       SECRET_KEY: 'testSecretKey'
+    //     },
+    //   },
+    //   all: ['test/*.js']
+    // },
     mochacov: {
       coverage: {
         options: {
@@ -39,6 +39,7 @@ module.exports = function(grunt) {
   // Load npm tasks
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-mocha-cli');
+  grunt.loadNpmTasks('grunt-mocha-cov');
 
   // Register the tasks
   grunt.registerTask('default', ['nodemon']);
