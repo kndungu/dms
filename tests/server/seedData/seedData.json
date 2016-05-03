@@ -1,0 +1,68 @@
+{
+    "users": {
+        "_model": "User",
+        "first": {
+            "username": "first",
+            "name": {
+                "first": "First",
+                "last": "User"
+            },
+            "email": "first@user.com",
+            "password": "firstPassword",
+            "role": "user"
+        },
+        "second": {
+            "username": "second",
+            "name": {
+                "first": "Second",
+                "last": "User"
+            },
+            "email": "second@user.com",
+            "password": "secondPassword",
+            "role": "user"
+        },
+        "third": {
+            "username": "third",
+            "name": {
+                "first": "Third",
+                "last": "User"
+            },
+            "email": "third@user.com",
+            "password": "thirdPassword",
+            "role": "user"
+        }
+    },
+    "test": {
+        "_model": "Test",
+        "first": {
+            "username": "first",
+            "name": {
+                "first": "First",
+                "last": "User"
+            },
+            "email": "first@user.com",
+            "password": "firstPassword",
+            "role": "user"
+        },
+        "second": {
+            "username": "second",
+            "name": {
+                "first": "Second",
+                "last": "User"
+            },
+            "email": "second@user.com",
+            "password": "secondPassword",
+            "role": "user"
+        },
+        "third": {
+            "username": "third",
+            "name": {
+                "first": "Third",
+                "last": "User"
+            },
+            "email": "third@user.com",
+            "password": "thirdPassword",
+            "role": "user"
+        }
+    }
+}

@@ -12,11 +12,13 @@ module.exports = function(grunt) {
       options: {
         env: {
           DATABASE_URI: 'mongodb://localhost:27017/testdb',
-          PORT: 8080,
-          SECRET_KEY: 'thisIsMySecretCanYouKeepIt?'
-        }
+          PORT: 3000,
+          SECRET_KEY: 'testSecretKey'
+        },
+        // Drop db and insert seed data before running the tests
+        require: ['./app', './tests/server/seedData/seed']
       },
-      all: ['test/*.js']
+      all: ['tests/server/*.spec.js']
     }
 
   });
