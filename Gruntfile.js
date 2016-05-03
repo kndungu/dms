@@ -16,7 +16,7 @@ module.exports = function(grunt) {
           SECRET_KEY: 'testSecretKey'
         },
       },
-      all: ['tests/server/*.spec.js']
+      all: ['test/server/*.spec.js']
     }
 
   });
