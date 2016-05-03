@@ -22,7 +22,7 @@ var path = require('path');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// Log requests to the console when not running tests (on port 3000)
+// Log requests to the console
 var logger = require('morgan');
 app.use(logger('dev'));
 
